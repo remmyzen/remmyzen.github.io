@@ -9,14 +9,14 @@ type: blog
 	
     <div class="col-md-12 col-sm-12" style="font-size:22px">
 	<ul class="posts">
-	  {% for post in paginator.posts %}
+	  {% for post in site.posts %}
 	    <li><span>{{ post.date | date_to_string }}</span> » <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
 	     <span style="font-size:16px">{{ post.content | strip_html | truncatewords:75}}<br>
             <a href="{{ post.url }}">Read more...</a><br><br></span>
 	  {% endfor %}
 	</ul>
     </div>
-    
+    <!--
     <div class="pagination">
 	  {% if paginator.previous_page %}
 	    <a href="{{ paginator.previous_page_path }}" class="previous">Previous</a>
@@ -29,5 +29,5 @@ type: blog
 	  {% else %}
 	    <span class="next ">Next</span>
 	  {% endif %}
-    </div>
+    </div> -->
 </div>
