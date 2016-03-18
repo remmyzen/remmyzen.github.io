@@ -8,24 +8,24 @@
         
 
         <!-- Bootstrap -->
-        <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css">
         
         <!-- Main Style -->
-        <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+        <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
 
         <!-- Responsive Style -->
-        <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
+        <link rel="stylesheet" type="text/css" href="/assets/css/responsive.css">
 
         <!--Icon Fonts-->
-        <link rel="stylesheet" media="screen" href="assets/fonts/font-awesome/font-awesome.min.css" />
+        <link rel="stylesheet" media="screen" href="/assets/fonts/font-awesome/font-awesome.min.css" />
 
         <!-- Extras -->
-        <link rel="stylesheet" type="text/css" href="assets/extras/animate.css">
-        <link rel="stylesheet" type="text/css" href="assets/extras/lightbox.css">
+        <link rel="stylesheet" type="text/css" href="/assets/extras/animate.css">
+        <link rel="stylesheet" type="text/css" href="/assets/extras/lightbox.css">
 
 
         <!-- jQuery Load -->
-        <script src="assets/js/jquery-min.js"></script>
+        <script src="/assets/js/jquery-min.js"></script>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         
         <!--[if lt IE 9]>
@@ -57,23 +57,27 @@
 			{% else %}
 			<li>
 			{% endif %}
-				<a href="index.html">&nbsp;&nbsp;Home&nbsp;&nbsp;</a>
+				<a href="/index.html">&nbsp;&nbsp;Home&nbsp;&nbsp;</a>
 			</li>
 			{% if page.type == "about" %}
 			<li class ="active">
 			{% else %}
 			<li>
 			{% endif %}
-			<a href="about.html">&nbsp;&nbsp;About&nbsp;&nbsp;</a>
+			<a href="/about.html">&nbsp;&nbsp;About&nbsp;&nbsp;</a>
 			</li>
-			
-			<li><a href="blog/">&nbsp;&nbsp;Blog&nbsp;&nbsp;</a></li>
+			{% if page.type == "blog" %}
+			<li class ="active">
+			{% else %}
+			<li>
+			{% endif %}
+			<a href="blog/">&nbsp;&nbsp;Blog&nbsp;&nbsp;</a></li>
 			
 			{% if page.type == "contact" %}
 			<li class ="active">
 			{% else %}
 			<li>
-			{% endif %}<a href="contact.html">&nbsp;&nbsp;Contact&nbsp;&nbsp;</a></li>
+			{% endif %}<a href="/contact.html">&nbsp;&nbsp;Contact&nbsp;&nbsp;</a></li>
 			</ul>
         </div>
       </div>
@@ -104,15 +108,15 @@
 	<!-- Copyright Section End-->
 
         <!-- Bootstrap JS -->
-        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>
 
             <!-- Smooth Scroll -->
                     <!-- Smooth Scroll -->
-        <script src="assets/js/smooth-scroll.js"></script>
-        <script src="assets/js/lightbox.min.js"></script>
+        <script src="/assets/js/smooth-scroll.js"></script>
+        <script src="/assets/js/lightbox.min.js"></script>
 
         <!-- All JS plugin Triggers -->
-        <script src="assets/js/main.js"></script>
+        <script src="/assets/js/main.js"></script>
 
 
 
