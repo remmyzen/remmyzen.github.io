@@ -52,14 +52,14 @@
 
         <div class="collapse navbar-collapse" id="navbar">
 			<ul class="nav navbar-nav col-md-9 pull-right">
-			{% if type == 'home' %}
+			{% if page.type == "home" %}
 			<li class ="active">
 			{% else %}
 			<li>
 			{% endif %}
 				<a href="index.html">&nbsp;&nbsp;Home&nbsp;&nbsp;</a>
 			</li>
-			{% if type == 'about' %}
+			{% if page.type == "about" %}
 			<li class ="active">
 			{% else %}
 			<li>
@@ -69,7 +69,7 @@
 			
 			<li><a href="blog/">&nbsp;&nbsp;Blog&nbsp;&nbsp;</a></li>
 			
-			{% if type == 'contact' %}
+			{% if page.type == "contact" %}
 			<li class ="active">
 			{% else %}
 			<li>
