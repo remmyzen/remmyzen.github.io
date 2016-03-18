@@ -52,10 +52,28 @@
 
         <div class="collapse navbar-collapse" id="navbar">
 			<ul class="nav navbar-nav col-md-9 pull-right">
-			<li><a href="index.html">&nbsp;&nbsp;Home&nbsp;&nbsp;</a></li>
-			<li class="active"><a href="about.html">&nbsp;&nbsp;About&nbsp;&nbsp;</a></li>
+			{% if type == 'home' %}
+			<li class ="active">
+			{% else %}
+			<li>
+			{% endif %}
+				<a href="index.html">&nbsp;&nbsp;Home&nbsp;&nbsp;</a>
+			</li>
+			{% if type == 'about' %}
+			<li class ="active">
+			{% else %}
+			<li>
+			{% endif %}
+			<a href="about.html">&nbsp;&nbsp;About&nbsp;&nbsp;</a>
+			</li>
+			
 			<li><a href="blog/">&nbsp;&nbsp;Blog&nbsp;&nbsp;</a></li>
-			<li><a href="contact.html">&nbsp;&nbsp;Contact&nbsp;&nbsp;</a></li>
+			
+			{% if type == 'contact' %}
+			<li class ="active">
+			{% else %}
+			<li>
+			{% endif %}<a href="contact.html">&nbsp;&nbsp;Contact&nbsp;&nbsp;</a></li>
 			</ul>
         </div>
       </div>
