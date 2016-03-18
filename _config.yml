@@ -1,3 +1,5 @@
 name: Remmy Zen's Blog
 markdown: kramdown
 permalink: /blog/:year/:month/:day/:title
+paginate: 10
+paginate_path: "blog/page:num"
