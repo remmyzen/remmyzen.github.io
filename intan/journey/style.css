@@ -50,7 +50,7 @@ body {
   }
   
   .ag-timeline-block {
-    padding: 300px 0;
+    padding: 20% 0;
   }
   .ag-timeline_title-box {
     padding: 0 0 30px;
@@ -59,7 +59,18 @@ body {
   }
   .ag-timeline_tagline {
     /* font-size: 40px; */
-    font-size: 3.5vw;
+    /* font-size: 3.5vw; */
+
+    font-size: 200%;
+    font-family: Geneva,Tahoma, sans-serif;
+    color: rgb(84, 89, 95);
+  }
+
+  .ag-timeline_tagline2 {
+    /* font-size: 40px; */
+    /* font-size: 3.5vw; */
+
+    font-size: 150%;
     font-family: Geneva,Tahoma, sans-serif;
     color: rgb(84, 89, 95);
   }
@@ -78,7 +89,8 @@ body {
     /*font-family: 'Geneva';  Verdana, Geneva, Tahoma, sans-serif; */
     color: blue;
     /* font-size: 80px;     */
-    font-size: 5.0vw;
+    /* font-size: 5.0vw; */
+    font-size: 300%;
 
   }
   
@@ -148,7 +160,9 @@ body {
     text-align: center;
     
     font-family:  'ESL Legend', sans-serif;
-    font-size: 1.0vw;
+    /* font-size: 1.2vw; */
+    font-size: 80%;
+
     color: #FFF;
   
     -webkit-border-radius: 50%;
@@ -250,6 +264,8 @@ body {
     right: auto;
     left: 0;
   }
+
+
   .ag-timeline-card_img {
     width: 100%;
   }
@@ -268,13 +284,15 @@ body {
   }
   .ag-timeline-card_desc {
     line-height: 1.45;
-  
     font-family: sans-serif;
     font-size: 16px;
+    text-align: center;
+
     color: #FFF;
   }
+
   .ag-timeline-card_desc a {
-    line-height: 1.45;
+    line-height: 1.25;
   
     font-family: sans-serif;
     font-size: 16px;
