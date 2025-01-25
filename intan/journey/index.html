@@ -10,24 +10,34 @@
   <link rel="stylesheet" href="magnific-popup.css">
   <!-- Magnific Popup core JS file -->
   <script src="jquery.magnific-popup.min.js"></script>
-  <script src="script.js"></script>
 
 
   <script>
+        function calculateDifference() {
+          const targetDateInput = '2024-06-09';
+          const resultDiv = document.getElementById('result');
+          
+          const today = new Date();
+          const targetDate = new Date(targetDateInput);
+          
+          const totalMonths = (today.getFullYear() - targetDate.getFullYear()) * 12 
+              + today.getMonth() - targetDate.getMonth();
+          const years = Math.floor(totalMonths / 12);
+          const months = totalMonths % 12;
+          const days = Math.ceil((today - targetDate) / (1000 * 60 * 60 * 24)) % 30;
 
+          resultDiv.innerHTML = `They have been together for: ${years} years, ${months} months, ${days} days.`;
+      }
   </script>
 </head>
-<body>
-  <div class="ag-timeline-block">
-    <div class="ag-timeline_title-box">
-          <iframe src="silence.mp3" allow="autoplay" id="audio" style="display: none"></iframe>
-    <audio controls autoplay loop>
-      <source src="song.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
-      <div class="ag-timeline_title">Intan and Remmy</div>
-      <div class="ag-timeline_tagline">A Timeline of Their Precious Moments &#128153;	      </div>
-    </div>
+<body onload="calculateDifference()">
+    <div class="ag-timeline-block">
+      <div class="ag-timeline_title-box">
+        <div class="ag-timeline_title">Intan and Remmy</div>
+        <div class="ag-timeline_tagline">A timeline of their precious moments &#128153;</div>
+        <div class="ag-timeline_tagline2" id="result"></div>
+        <br/>
+      </div>
     <section class="ag-section">
       <div class="ag-format-container">
         <div class="js-timeline ag-timeline">
@@ -299,7 +309,13 @@
       </div>
     </section>
   </div>
+  <script src="script.js"></script>
 
 </body>
-
+<div class="ag-timeline_title-box">
+  <iframe src="silence.mp3" allow="autoplay" id="audio" style="display: none"></iframe>
+<audio controls autoplay loop>
+<source src="song.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
 </html>
