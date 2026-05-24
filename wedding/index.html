@@ -77,9 +77,18 @@
         container-type: inline-size;
         width: min(100vw, 390px);
         overflow: hidden;
-        background:
+        background-image:
           linear-gradient(rgba(255, 252, 244, 0.08), rgba(255, 252, 244, 0.08)),
-          url("assets/background.png") center / cover no-repeat;
+          url("assets/background.png");
+        background-position:
+          center top,
+          center top;
+        background-repeat:
+          repeat,
+          repeat-y;
+        background-size:
+          auto,
+          100% auto;
         isolation: isolate;
       }
 
