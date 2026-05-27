@@ -24,7 +24,7 @@
 
 @font-face {
   font-family: "Louisville";
-  src: url("assets/fonts/louisville.ttf") format("truetype");
+  src: url("assets/fonts/louisvilleII.ttf") format("truetype");
   font-display: swap;
   font-style: normal;
   font-weight: 400;
@@ -100,8 +100,19 @@ body {
 .page-gift,
 .page-closing {
   position: relative;
-  min-height: max(100vh, calc(min(100vw, 390px) * 599 / 337));
   overflow: hidden;
+}
+
+.opening-screen {
+  min-height: max(100vh, calc(min(100vw, 390px) * 599 / 337));
+}
+
+.page-bio,
+.page-story,
+.page-event,
+.page-gift,
+.page-closing {
+  min-height: calc(min(100vw, 390px) * 599 / 337);
 }
 
 .page {
@@ -445,7 +456,8 @@ body {
 
 .quote-border-top {
   top: 3.2cqw;
-  left: 23.2cqw;
+  left: 10.2cqw;
+  transform: scaleX(-1);
 }
 
 .quote-border-bottom {
@@ -456,7 +468,7 @@ body {
 
 .quote-flower-bg {
   position: absolute;
-  top: 80cqw;
+  top: 60cqw;
   left: 50%;
   z-index: 1;
   width: 80%;
@@ -471,7 +483,7 @@ body {
   top: 4.2cqw;
   right: -0.5cqw;
   z-index: 2;
-  width: 50.5%;
+  width: 45.5%;
   height: auto;
   pointer-events: none;
 }
@@ -494,7 +506,7 @@ body {
   z-index: 3;
   text-align: center;
   font-family: "Buffalo", "SignPainter", "Snell Roundhand", "Apple Chancery", cursive;
-  font-size: clamp(32px, 6.05vw, 23.6px);
+  font-size: clamp(28px, 6.05vw, 23.6px);
   font-weight: 400;
   line-height: 1.55;
   letter-spacing: 0;
@@ -545,74 +557,115 @@ body {
 
 .bio-butterflies {
   position: absolute;
-  top: 1.2cqw;
-  left: 3.2cqw;
+  top: -5cqw;
+  left: -1cqw;
   z-index: 2;
-  width: 30%;
+  width: 37.5%;
   height: auto;
   pointer-events: none;
 }
 
 .bio-butterfly-large {
   position: absolute;
-  top: 2.6cqw;
-  right: 51cqw;
+  top: -2cqw;
+  right: 51.5cqw;
   z-index: 8;
-  width: 15.5%;
+  width: 14.6%;
   height: auto;
   pointer-events: none;
 }
 
 .bio-butterfly-mid {
   position: absolute;
-  top: 80cqw;
-  right: 40.5cqw;
+  top: 78.8cqw;
+  left: 47.2%;
   z-index: 8;
-  width: 20%;
+  width: 17%;
   height: auto;
   pointer-events: none;
 }
 
 .bio-flower-top {
   position: absolute;
-  top: 2cqw;
-  right: 2.5cqw;
+  top: -1cqw;
+  right: 4.5cqw;
   z-index: 8;
-  width: 20%;
+  width: 18%;
   height: auto;
   pointer-events: none;
 }
 
 .bio-flower-mid {
   position: absolute;
-  top: 90.5cqw;
-  left: -1cqw;
+  top: 88.7cqw;
+  left: -1.7cqw;
   z-index: 8;
-  width: 21%;
+  width: 19.5%;
+  height: auto;
+  pointer-events: none;
+}
+
+.bio-flower-middle {
+  position: absolute;
+  top: 65.5cqw;
+  left: 8cqw;
+  z-index: 2;
+  width: 32%;
+  height: auto;
+  pointer-events: none;
+}
+
+.bio-flower-middle-right {
+  position: absolute;
+  top: 73.4cqw;
+  right: 0.8cqw;
+  z-index: 3;
+  width: 20.8%;
   height: auto;
   pointer-events: none;
 }
 
 .bio-flower-bottom {
   position: absolute;
-  right: -1cqw;
-  bottom: -1.8cqw;
+  right: 12.8cqw;
+  top: 140cqw;
   z-index: 8;
-  width: 33%;
+  width: 17%;
   height: auto;
+  pointer-events: none;
+}
+
+.bio-flower-bottom-extra {
+  position: absolute;
+  right: 19.2cqw;
+  top: 145cqw;
+  z-index: 9;
+  width: 12.8%;
+  height: auto;
+  pointer-events: none;
+}
+
+.bio-border-bottom {
+  position: absolute;
+  left: 50%;
+  top: 163cqw;
+  z-index: 3;
+  width: 35%;
+  height: auto;
+  transform: translateX(-50%);
   pointer-events: none;
 }
 
 .bio-title {
   position: absolute;
   z-index: 3;
-  width: 37cqw;
-  min-height: 39cqw;
+  width: 31.5cqw;
+  min-height: 34cqw;
   display: grid;
   place-items: center;
   text-align: center;
   font-family: "Louisville", "Lora", serif;
-  font-size: clamp(25px, 8.1cqw, 31px);
+  font-size: clamp(35px, 7.15cqw, 27.9px);
   line-height: 1.14;
   letter-spacing: 0;
   text-transform: uppercase;
@@ -621,31 +674,53 @@ body {
 }
 
 .bio-title::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background:
-    url("assets/page-3/name-border.png") center 24% / 100% auto no-repeat,
-    url("assets/page-3/name-border.png") center 76% / 100% auto no-repeat;
+  content: none;
 }
 
 .bio-title::after {
   content: "";
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 60%;
   z-index: -2;
-  width: 33%;
+  width: 83%;
   aspect-ratio: 255 / 338;
   background: url("assets/page-3/flower-name.png") center / contain no-repeat;
-  opacity: 0.72;
+  opacity: 0.92;
   transform: translate(-50%, -51%);
 }
 
+.bio-title span {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+}
+
+.bio-title span::before,
+.bio-title span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  aspect-ratio: 314 / 34;
+  background: url("assets/page-3/name-border.png") center / contain no-repeat;
+  pointer-events: none;
+}
+
+.bio-title span::before {
+  top: 1.8cqw;
+}
+
+.bio-title span::after {
+  bottom: 1.8cqw;
+  transform: scaleY(-1);
+}
+
 .bride-title {
-  top: 34cqw;
-  left: 2.4cqw;
+  top: 23cqw;
+  left: 7.2cqw;
   transform: translateY(-22cqw);
   transition:
     opacity 900ms ease,
@@ -658,8 +733,8 @@ body {
 }
 
 .groom-title {
-  top: 104cqw;
-  right: 3.8cqw;
+  top: 101.2cqw;
+  right: 7.2cqw;
   transform: translateY(24cqw);
   transition:
     opacity 900ms ease 120ms,
@@ -685,7 +760,7 @@ body {
 }
 
 .bio-card-frame,
-.bio-card-photo {
+.bio-card-photo-window {
   position: absolute;
 }
 
@@ -696,47 +771,59 @@ body {
   height: 100%;
 }
 
-.bio-card-photo {
+.bio-card-photo-window {
   top: 4.9%;
   left: 4.7%;
   z-index: 3;
   width: 89.5%;
   height: 73.6%;
+  overflow: hidden;
+}
+
+.bio-card-photo {
+  --photo-shift-x: 0%;
+  --photo-zoom: 1.5;
+  display: block;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  transform: translateX(var(--photo-shift-x)) scale(var(--photo-zoom));
+  transform-origin: center;
 }
 
 .bride-card {
-  top: 9.5cqw;
-  right: 8.8cqw;
-  transform: translateY(-30cqw) rotate(6.5deg);
+  top: 8.8cqw;
+  right: 8.3cqw;
+  transform: translateY(-30cqw) rotate(5.8deg);
   transition:
     opacity 900ms ease,
     transform 1200ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .bride-card.is-visible {
-  transform: translateY(0) rotate(6.5deg);
+  transform: translateY(0) rotate(5.8deg);
 }
 
 .bride-card .bio-card-photo {
-  object-position: 53% 56%;
+  object-position: 70% 70%;
 }
 
 .groom-card {
-  top: 91.5cqw;
-  left: 7.3cqw;
-  transform: translateY(32cqw) rotate(-5.5deg);
+  top: 91cqw;
+  left: 7.2cqw;
+  transform: translateY(32cqw) rotate(-4.8deg);
   transition:
     opacity 900ms ease 120ms,
     transform 1200ms cubic-bezier(0.22, 1, 0.36, 1) 120ms;
 }
 
 .groom-card.is-visible {
-  transform: translateY(0) rotate(-5.5deg);
+  transform: translateY(0) rotate(-4.8deg);
 }
 
 .groom-card .bio-card-photo {
-  object-position: 50% 48%;
+  object-position: 0% 48%;
+  --photo-shift-x: 5%;
 }
 
 .bio-caption {
@@ -755,14 +842,16 @@ body {
 
 .bio-name {
   display: block;
-  font-size: clamp(10px, 3.25cqw, 12.7px);
+  font-size: clamp(14px, 3.25cqw, 12.7px);
   white-space: nowrap;
+  padding-bottom: 2.15cqw;
 }
 
 .bio-detail {
   display: block;
   margin-top: 0.5cqw;
-  font-size: clamp(5.8px, 1.85cqw, 7.2px);
+  font-size: clamp(9px, 1.85cqw, 7.2px);
+  margin-left: -2.5cqw;
   white-space: nowrap;
 }
 
@@ -1624,12 +1713,7 @@ body {
 }
 
 @supports (height: 100svh) {
-  .opening-screen,
-  .page-bio,
-  .page-story,
-  .page-event,
-  .page-gift,
-  .page-closing {
+  .opening-screen {
     min-height: max(100svh, calc(min(100vw, 390px) * 599 / 337));
   }
 }
@@ -1639,12 +1723,7 @@ body {
     min-height: 100dvh;
   }
 
-  .opening-screen,
-  .page-bio,
-  .page-story,
-  .page-event,
-  .page-gift,
-  .page-closing {
+  .opening-screen {
     min-height: max(100dvh, calc(min(100vw, 390px) * 599 / 337));
   }
 }
