@@ -30,6 +30,14 @@
   font-weight: 400;
 }
 
+@font-face {
+  font-family: "Auriol";
+  src: url("assets/fonts/auriol.otf") format("opentype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -113,6 +121,10 @@ body {
 .page-gift,
 .page-closing {
   min-height: calc(min(100vw, 390px) * 599 / 337);
+}
+
+.page-story {
+  min-height: 224cqw;
 }
 
 .page {
@@ -620,7 +632,7 @@ body {
   top: 73.4cqw;
   right: 0.8cqw;
   z-index: 3;
-  width: 20.8%;
+  width: 15.8%;
   height: auto;
   pointer-events: none;
 }
@@ -719,7 +731,7 @@ body {
 }
 
 .bride-title {
-  top: 23cqw;
+  top: 28cqw;
   left: 7.2cqw;
   transform: translateY(-22cqw);
   transition:
@@ -855,28 +867,60 @@ body {
   white-space: nowrap;
 }
 
+.story-background-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+}
+
+.story-below-bg {
+  position: absolute;
+  left: 0;
+  top: 172cqw;
+  z-index: 1;
+  width: 100%;
+  height: calc(100% - 172cqw);
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.story-swirl-below {
+  position: absolute;
+  top: 169.2cqw;
+  left: 50%;
+  z-index: 3;
+  width: 100%;
+  height: auto;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
 .story-flower-top {
   position: absolute;
-  top: 3.8cqw;
-  z-index: 2;
-  width: 20.2%;
+  top: 6.4cqw;
+  z-index: 3;
+  width: 13%;
   height: auto;
   pointer-events: none;
 }
 
 .story-flower-left {
-  left: 8cqw;
+  left: 20.6cqw;
 }
 
 .story-flower-right {
-  right: 8cqw;
+  right: 20.6cqw;
 }
 
 .story-title {
   position: absolute;
-  top: 6.6cqw;
+  top: 10.3cqw;
   left: 50%;
-  z-index: 3;
+  z-index: 4;
   width: 38%;
   margin: 0;
   transform: translateX(-50%);
@@ -900,12 +944,12 @@ body {
 
 .story-film {
   position: absolute;
-  top: 28cqw;
+  top: 26cqw;
   left: 50%;
-  z-index: 3;
-  width: 79.5%;
+  z-index: 4;
+  width: 83.5%;
   aspect-ratio: 1024 / 576;
-  padding: 3.8cqw 0;
+  padding: 3.3cqw 0;
   transform: translateX(-50%);
   background: #31302e;
   box-shadow: 0 2px 3px rgba(31, 25, 18, 0.18);
@@ -918,7 +962,7 @@ body {
   left: 0;
   right: 0;
   z-index: 2;
-  height: 2.5cqw;
+  height: 2.4cqw;
   background:
     repeating-linear-gradient(
       90deg,
@@ -946,15 +990,15 @@ body {
 
 .story-copy {
   position: absolute;
-  top: 77.5cqw;
-  left: 6.3%;
-  right: 6.3%;
+  top: 80.4cqw;
+  left: 5.8%;
+  right: 5.8%;
   z-index: 3;
   margin: 0;
   text-align: center;
-  font-family: "Lora", Georgia, serif;
-  font-size: clamp(8.2px, 2.38cqw, 9.3px);
-  line-height: 1.08;
+  font-family: "Auriol", "Lora", Georgia, serif;
+  font-size: 14px;
+  line-height: 1.04;
 }
 
 .story-copy p {
@@ -962,12 +1006,12 @@ body {
 }
 
 .story-copy p + p {
-  margin-top: 2.4cqw;
+  margin-top: 2.1cqw;
 }
 
 .story-tldr {
   display: inline-block;
-  margin-top: 2.6cqw;
+  margin-top: 2.2cqw;
   color: inherit;
   text-decoration: underline;
   text-underline-offset: 0.25em;
@@ -975,47 +1019,62 @@ body {
 
 .story-gallery {
   position: absolute;
-  left: 5.5cqw;
-  right: 5.5cqw;
-  bottom: 5.8cqw;
+  left: 4.2cqw;
+  right: 4.2cqw;
+  top: 178cqw;
   z-index: 3;
-  height: 24cqw;
+  height: 41cqw;
 }
 
 .memory-card {
   position: absolute;
-  width: 23%;
+  width: 30.2%;
   margin: 0;
-  padding: 1.05cqw 1.05cqw 1.45cqw;
+  padding: 1.25cqw 1.25cqw 1.9cqw;
   background: #f7f3e9;
   box-shadow: 0 1px 2px rgba(41, 35, 27, 0.2);
 }
 
+.memory-card::before {
+  content: "";
+  position: absolute;
+  top: -3.7cqw;
+  left: 50%;
+  z-index: 5;
+  width: 15.8cqw;
+  aspect-ratio: 140 / 46;
+  background: url("assets/page-4/tape.png") center / contain no-repeat;
+  transform: translateX(-50%) rotate(var(--tape-rotate, 0deg));
+  pointer-events: none;
+}
+
 .memory-card img:first-child {
+  position: relative;
+  z-index: 1;
   display: block;
   width: 100%;
-  aspect-ratio: 1 / 1.12;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
 }
 
 .memory-card figcaption {
-  min-height: 6.5cqw;
-  margin-top: 1.85cqw;
+  position: relative;
+  z-index: 2;
+  min-height: 7.2cqw;
+  margin-top: 1.05cqw;
   color: #11100d;
   text-align: center;
   font-family: "Aloja", "SignPainter", "Snell Roundhand", "Apple Chancery", cursive;
-  font-size: clamp(5.4px, 1.72cqw, 6.7px);
-  line-height: 1.86;
+  font-size: clamp(7.2px, 2.25cqw, 8.8px);
+  line-height: 1.05;
 }
 
 .memory-flower {
-  position: absolute;
-  z-index: 2;
-  height: auto;
-  pointer-events: none;
+  display: none;
 }
 
 .memory-one {
+  --tape-rotate: -2deg;
   left: 0;
   bottom: 1cqw;
   transform: rotate(0deg);
@@ -1032,13 +1091,13 @@ body {
 }
 
 .memory-two {
-  left: 38.4%;
+  --tape-rotate: 5deg;
+  left: 34.9%;
   bottom: 0;
   transform: rotate(12deg);
 }
 
 .memory-two img:first-child {
-  aspect-ratio: 1 / 1.08;
   object-position: 50% 50%;
 }
 
@@ -1050,6 +1109,7 @@ body {
 }
 
 .memory-three {
+  --tape-rotate: -4deg;
   right: 0;
   bottom: 1.1cqw;
   transform: rotate(-8deg);
@@ -1710,6 +1770,25 @@ body {
   line-height: 1.52;
   letter-spacing: 0;
   transition-delay: 320ms;
+}
+
+@media (max-width: 380px) {
+  .page-story {
+    min-height: 925px;
+  }
+
+  .story-below-bg {
+    top: 712px;
+    height: calc(100% - 712px);
+  }
+
+  .story-swirl-below {
+    top: 700px;
+  }
+
+  .story-gallery {
+    top: 730px;
+  }
 }
 
 @supports (height: 100svh) {
