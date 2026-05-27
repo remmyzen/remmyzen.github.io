@@ -890,7 +890,7 @@ body {
 
 .story-swirl-below {
   position: absolute;
-  top: 169.2cqw;
+  top: 170.2cqw;
   left: 50%;
   z-index: 3;
   width: 100%;
@@ -997,7 +997,7 @@ body {
   margin: 0;
   text-align: center;
   font-family: "Auriol", "Lora", Georgia, serif;
-  font-size: 14px;
+  font-size: 13.5px;
   line-height: 1.04;
 }
 
@@ -1110,7 +1110,7 @@ body {
 
 .memory-three {
   --tape-rotate: -4deg;
-  right: 0;
+  right: -1.5cqw;
   bottom: 1.1cqw;
   transform: rotate(-8deg);
 }
@@ -1121,7 +1121,7 @@ body {
 
 .memory-three .memory-flower {
   top: -4cqw;
-  right: -5.5cqw;
+  right: -9.5cqw;
   width: 13.3cqw;
   transform: rotate(8deg);
 }
