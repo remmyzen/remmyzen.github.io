@@ -445,18 +445,21 @@ body {
 
 .quote-border-top {
   top: 3.2cqw;
+  left: 30.2cqw;
 }
 
 .quote-border-bottom {
-  bottom: 4.5cqw;
+  bottom: 10.5cqw;
+  left: 70.2cqw;
+
 }
 
 .quote-flower-bg {
   position: absolute;
-  top: 24cqw;
+  top: 60cqw;
   left: 50%;
   z-index: 1;
-  width: 64%;
+  width: 70%;
   height: auto;
   opacity: 0.46;
   transform: translateX(-50%);
@@ -485,14 +488,14 @@ body {
 
 .quote-copy {
   position: absolute;
-  top: 33.2%;
+  top: 25.2%;
   left: 11.2%;
   right: 11.2%;
   z-index: 3;
   text-align: center;
   font-family: "Buffalo", "SignPainter", "Snell Roundhand", "Apple Chancery", cursive;
-  font-size: clamp(21px, 6.05vw, 23.6px);
-  font-size: clamp(21px, 6.05cqw, 23.6px);
+  font-size: clamp(31px, 6.05vw, 23.6px);
+  font-size: clamp(31px, 6.05cqw, 23.6px);
   font-weight: 400;
   line-height: 1.55;
   letter-spacing: 0;
