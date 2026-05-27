@@ -8,7 +8,7 @@
 
 @font-face {
   font-family: "Buffalo";
-  src: url("assets/fonts/buffalo.ttf") format("truetype");
+  src: url("assets/fonts/buffalo.otf") format("truetype");
   font-display: swap;
   font-style: normal;
   font-weight: 400;
@@ -445,21 +445,21 @@ body {
 
 .quote-border-top {
   top: 3.2cqw;
-  left: 30.2cqw;
+  left: 23.2cqw;
 }
 
 .quote-border-bottom {
   bottom: 10.5cqw;
-  left: 70.2cqw;
+  left: 75.2cqw;
 
 }
 
 .quote-flower-bg {
   position: absolute;
-  top: 60cqw;
+  top: 80cqw;
   left: 50%;
   z-index: 1;
-  width: 70%;
+  width: 80%;
   height: auto;
   opacity: 0.46;
   transform: translateX(-50%);
@@ -468,10 +468,10 @@ body {
 
 .quote-flower-top {
   position: absolute;
-  top: -4.2cqw;
+  top: 4.2cqw;
   right: -0.5cqw;
   z-index: 2;
-  width: 40.5%;
+  width: 50.5%;
   height: auto;
   pointer-events: none;
 }
@@ -481,21 +481,20 @@ body {
   bottom: 3cqw;
   left: -2.4cqw;
   z-index: 2;
-  width: 41.5%;
+  width: 50.5%;
   height: auto;
   pointer-events: none;
 }
 
 .quote-copy {
   position: absolute;
-  top: 25.2%;
-  left: 11.2%;
-  right: 11.2%;
+  top: 30.2%;
+  left: 8.2%;
+  right: 10.2%;
   z-index: 3;
   text-align: center;
   font-family: "Buffalo", "SignPainter", "Snell Roundhand", "Apple Chancery", cursive;
-  font-size: clamp(31px, 6.05vw, 23.6px);
-  font-size: clamp(31px, 6.05cqw, 23.6px);
+  font-size: clamp(32px, 6.05vw, 23.6px);
   font-weight: 400;
   line-height: 1.55;
   letter-spacing: 0;
