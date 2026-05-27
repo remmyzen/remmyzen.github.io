@@ -1,0 +1,1654 @@
+@font-face {
+  font-family: "Aloja";
+  src: url("assets/fonts/aloja.ttf") format("truetype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Buffalo";
+  src: url("assets/fonts/buffalo.ttf") format("truetype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Lora";
+  src: url("assets/fonts/lora.ttf") format("truetype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Louisville";
+  src: url("assets/fonts/louisville.ttf") format("truetype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  background: #eee9dc;
+  color: #16120e;
+  font-family: "Lora", Georgia, serif;
+  overflow-x: hidden;
+}
+
+.invitation {
+  position: relative;
+  container-type: inline-size;
+  width: min(100vw, 390px);
+  overflow: hidden;
+  background-image:
+    linear-gradient(rgba(255, 252, 244, 0.08), rgba(255, 252, 244, 0.08)),
+    url("assets/background.png");
+  background-position:
+    center top,
+    center top;
+  background-repeat:
+    repeat,
+    repeat-y;
+  background-size:
+    auto,
+    100% auto;
+  isolation: isolate;
+}
+
+.invitation::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+.opening-screen,
+.page-bio,
+.page-story,
+.page-event,
+.page-gift,
+.page-closing {
+  position: relative;
+  min-height: max(100vh, calc(min(100vw, 390px) * 599 / 337));
+  overflow: hidden;
+}
+
+.page {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.page-cover {
+  z-index: 2;
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 700ms ease,
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 700ms ease;
+}
+
+.page-quote {
+  z-index: 1;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 700ms ease,
+    visibility 700ms ease;
+}
+
+.invitation.show-quote .page-cover {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8%);
+  pointer-events: none;
+}
+
+.invitation.show-quote .page-quote {
+  opacity: 1;
+  visibility: visible;
+}
+
+.music-toggle {
+  position: fixed;
+  right: max(16px, calc((100vw - 390px) / 2 + 16px));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 20;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid rgba(38, 75, 132, 0.36);
+  border-radius: 50%;
+  background: rgba(250, 247, 238, 0.82);
+  box-shadow: 0 4px 14px rgba(55, 45, 32, 0.16);
+  color: #1d4fa0;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(10px);
+  visibility: hidden;
+  transition:
+    opacity 450ms ease,
+    transform 450ms ease,
+    visibility 450ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.invitation.show-quote .music-toggle {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.music-toggle:focus-visible {
+  outline: 2px solid #1d4fa0;
+  outline-offset: 3px;
+}
+
+.speaker-icon {
+  position: relative;
+  width: 22px;
+  height: 22px;
+}
+
+.speaker-icon::before {
+  content: "";
+  position: absolute;
+  left: 1px;
+  top: 7px;
+  width: 7px;
+  height: 8px;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+.speaker-cone {
+  position: absolute;
+  left: 6px;
+  top: 4px;
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-right: 9px solid currentColor;
+  border-bottom: 7px solid transparent;
+}
+
+.speaker-wave {
+  position: absolute;
+  top: 4px;
+  right: 0;
+  width: 8px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-left: 0;
+  border-radius: 0 14px 14px 0;
+}
+
+.speaker-slash {
+  position: absolute;
+  left: 2px;
+  top: 10px;
+  width: 22px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0;
+  transform: rotate(-42deg);
+  transform-origin: center;
+}
+
+.music-toggle.is-muted .speaker-wave {
+  opacity: 0;
+}
+
+.music-toggle.is-muted .speaker-slash {
+  opacity: 1;
+}
+
+.cover-butterfly {
+  position: absolute;
+  z-index: 4;
+  height: auto;
+  pointer-events: none;
+}
+
+.cover-butterfly-left {
+  top: 5.9cqw;
+  left: 6.6cqw;
+  width: 10.6%;
+  transform: rotate(-7deg);
+}
+
+.cover-butterfly-right {
+  top: 5.6cqw;
+  right: 8.4cqw;
+  width: 10.6%;
+  transform: rotate(15deg);
+}
+
+.top-flower {
+  position: absolute;
+  top: 12.2cqw;
+  left: 15.8%;
+  z-index: 3;
+  width: 68.6%;
+  height: auto;
+}
+
+.vine {
+  position: absolute;
+  top: 31.8cqw;
+  z-index: 5;
+  width: 45%;
+  max-width: 205px;
+  height: auto;
+}
+
+.vine-left {
+  left: -3.5%;
+  transform: rotate(-3deg);
+}
+
+.vine-right {
+  right: -3.5%;
+  transform: scaleX(-1) rotate(-3deg);
+}
+
+.polaroid {
+  position: absolute;
+  top: 31.8cqw;
+  left: 50%;
+  z-index: 4;
+  width: 60.4%;
+  max-width: 235px;
+  aspect-ratio: 657 / 763;
+  transform: translateX(-50%);
+}
+
+.polaroid-frame {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.polaroid-photo-window {
+  position: absolute;
+  top: 4.9%;
+  left: 4.7%;
+  z-index: 2;
+  width: 89.5%;
+  height: 73.6%;
+  overflow: hidden;
+}
+
+.polaroid-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 40% 0%;
+  transform: scale(1.3);
+  transform-origin: center;
+}
+
+.polaroid-flower {
+  position: absolute;
+  left: 5.8%;
+  bottom: 0%;
+  z-index: 3;
+  width: 18.5%;
+  height: auto;
+  pointer-events: none;
+}
+
+.couple-mark {
+  position: absolute;
+  right: 7.2%;
+  bottom: 5.5%;
+  z-index: 3;
+  width: 43%;
+  text-align: right;
+  color: #11100d;
+  font-family: "Aloja", "SignPainter", "Snell Roundhand", "Apple Chancery", cursive;
+  font-size: clamp(9px, 3.1vw, 12px);
+  font-size: clamp(9px, 3.1cqw, 12px);
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: 0;
+}
+
+.couple-mark span {
+  display: block;
+
+}
+
+.message {
+  position: absolute;
+  top: 107.2cqw;
+  left: 13.4%;
+  right: 13.4%;
+  z-index: 5;
+  text-align: center;
+  font-family: "Buffalo", "SignPainter", "Snell Roundhand", "Apple Chancery", cursive;
+  font-size: clamp(25px, 5.85vw, 22.8px);
+  font-size: clamp(25px, 5.85cqw, 22.8px);
+  font-weight: 400;
+  line-height: 1.82;
+  letter-spacing: 0;
+}
+
+.message-bg {
+  position: absolute;
+  top: 103.4cqw;
+  left: 50%;
+  z-index: 4;
+  width: 75.6%;
+  height: auto;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.message p {
+  margin: 0;
+}
+
+.message p + p {
+  white-space: nowrap;
+}
+
+.guest-name {
+  display: inline-block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.enter-link {
+  position: absolute;
+  top: 153.2cqw;
+  left: 50%;
+  z-index: 7;
+  display: grid;
+  width: min(22vw, 100px);
+  width: min(22cqw, 100px);
+  aspect-ratio: 193 / 62;
+  place-items: center;
+  padding: 0 0 1px;
+  transform: translateX(-50%);
+  border: 0;
+  background: url("assets/page-1/click-here-bg.png") center / contain no-repeat;
+  color: #fffef8;
+  font-family: "Lora", Georgia, serif;
+  font-size: clamp(6px, 1.95vw, 7.6px);
+  font-size: clamp(6px, 1.95cqw, 7.6px);
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.bottom-flower {
+  position: absolute;
+  right: -6%;
+  top: 104cqw;
+  bottom: auto;
+  z-index: 2;
+  width: 112%;
+  max-width: none;
+  height: auto;
+  pointer-events: none;
+}
+
+.quote-border {
+  position: absolute;
+  left: 50%;
+  z-index: 3;
+  width: 40%;
+  height: auto;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.quote-border-top {
+  top: 3.2cqw;
+}
+
+.quote-border-bottom {
+  bottom: 4.5cqw;
+}
+
+.quote-flower-bg {
+  position: absolute;
+  top: 24cqw;
+  left: 50%;
+  z-index: 1;
+  width: 64%;
+  height: auto;
+  opacity: 0.46;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.quote-flower-top {
+  position: absolute;
+  top: -4.2cqw;
+  right: -0.5cqw;
+  z-index: 2;
+  width: 40.5%;
+  height: auto;
+  pointer-events: none;
+}
+
+.quote-flower-bottom {
+  position: absolute;
+  bottom: 3cqw;
+  left: -2.4cqw;
+  z-index: 2;
+  width: 41.5%;
+  height: auto;
+  pointer-events: none;
+}
+
+.quote-copy {
+  position: absolute;
+  top: 33.2%;
+  left: 11.2%;
+  right: 11.2%;
+  z-index: 3;
+  text-align: center;
+  font-family: "Buffalo", "SignPainter", "Snell Roundhand", "Apple Chancery", cursive;
+  font-size: clamp(21px, 6.05vw, 23.6px);
+  font-size: clamp(21px, 6.05cqw, 23.6px);
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: 0;
+  opacity: 0;
+  transform: translateY(14cqw);
+  transition:
+    opacity 900ms ease 180ms,
+    transform 1200ms cubic-bezier(0.22, 1, 0.36, 1) 180ms;
+}
+
+.invitation.show-quote .quote-copy {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.quote-copy blockquote,
+.quote-copy p {
+  margin: 0;
+}
+
+.quote-copy blockquote {
+  quotes: none;
+}
+
+.quote-reference {
+  margin-top: 5.2cqw;
+  text-align: right;
+}
+
+.page-bio {
+  display: none;
+}
+
+.page-story,
+.page-event,
+.page-gift,
+.page-closing {
+  display: none;
+}
+
+.invitation.show-quote .page-bio,
+.invitation.show-quote .page-story,
+.invitation.show-quote .page-event,
+.invitation.show-quote .page-gift,
+.invitation.show-quote .page-closing {
+  display: block;
+}
+
+.bio-butterflies {
+  position: absolute;
+  top: 1.2cqw;
+  left: 3.2cqw;
+  z-index: 2;
+  width: 30%;
+  height: auto;
+  pointer-events: none;
+}
+
+.bio-butterfly-large {
+  position: absolute;
+  top: 2.6cqw;
+  right: 51cqw;
+  z-index: 8;
+  width: 15.5%;
+  height: auto;
+  pointer-events: none;
+}
+
+.bio-butterfly-mid {
+  position: absolute;
+  top: 80cqw;
+  right: 40.5cqw;
+  z-index: 8;
+  width: 20%;
+  height: auto;
+  pointer-events: none;
+}
+
+.bio-flower-top {
+  position: absolute;
+  top: 2cqw;
+  right: 2.5cqw;
+  z-index: 8;
+  width: 20%;
+  height: auto;
+  pointer-events: none;
+}
+
+.bio-flower-mid {
+  position: absolute;
+  top: 90.5cqw;
+  left: -1cqw;
+  z-index: 8;
+  width: 21%;
+  height: auto;
+  pointer-events: none;
+}
+
+.bio-flower-bottom {
+  position: absolute;
+  right: -1cqw;
+  bottom: -1.8cqw;
+  z-index: 8;
+  width: 33%;
+  height: auto;
+  pointer-events: none;
+}
+
+.bio-title {
+  position: absolute;
+  z-index: 3;
+  width: 37cqw;
+  min-height: 39cqw;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-family: "Louisville", "Lora", serif;
+  font-size: clamp(25px, 8.1cqw, 31px);
+  line-height: 1.14;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.bio-title::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    url("assets/page-3/name-border.png") center 24% / 100% auto no-repeat,
+    url("assets/page-3/name-border.png") center 76% / 100% auto no-repeat;
+}
+
+.bio-title::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: -2;
+  width: 33%;
+  aspect-ratio: 255 / 338;
+  background: url("assets/page-3/flower-name.png") center / contain no-repeat;
+  opacity: 0.72;
+  transform: translate(-50%, -51%);
+}
+
+.bride-title {
+  top: 34cqw;
+  left: 2.4cqw;
+  transform: translateY(-22cqw);
+  transition:
+    opacity 900ms ease,
+    transform 1200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bride-title.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.groom-title {
+  top: 104cqw;
+  right: 3.8cqw;
+  transform: translateY(24cqw);
+  transition:
+    opacity 900ms ease 120ms,
+    transform 1200ms cubic-bezier(0.22, 1, 0.36, 1) 120ms;
+}
+
+.groom-title.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bio-card {
+  position: absolute;
+  z-index: 5;
+  width: 48.5%;
+  aspect-ratio: 657 / 763;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.bio-card.is-visible {
+  opacity: 1;
+}
+
+.bio-card-frame,
+.bio-card-photo {
+  position: absolute;
+}
+
+.bio-card-frame {
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+}
+
+.bio-card-photo {
+  top: 4.9%;
+  left: 4.7%;
+  z-index: 3;
+  width: 89.5%;
+  height: 73.6%;
+  object-fit: cover;
+}
+
+.bride-card {
+  top: 9.5cqw;
+  right: 8.8cqw;
+  transform: translateY(-30cqw) rotate(6.5deg);
+  transition:
+    opacity 900ms ease,
+    transform 1200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bride-card.is-visible {
+  transform: translateY(0) rotate(6.5deg);
+}
+
+.bride-card .bio-card-photo {
+  object-position: 53% 56%;
+}
+
+.groom-card {
+  top: 91.5cqw;
+  left: 7.3cqw;
+  transform: translateY(32cqw) rotate(-5.5deg);
+  transition:
+    opacity 900ms ease 120ms,
+    transform 1200ms cubic-bezier(0.22, 1, 0.36, 1) 120ms;
+}
+
+.groom-card.is-visible {
+  transform: translateY(0) rotate(-5.5deg);
+}
+
+.groom-card .bio-card-photo {
+  object-position: 50% 48%;
+}
+
+.bio-caption {
+  position: absolute;
+  left: 7.2%;
+  right: 7.2%;
+  bottom: 4.2%;
+  z-index: 4;
+  margin: 0;
+  color: #11100d;
+  text-align: center;
+  font-family: "Aloja", "SignPainter", "Snell Roundhand", "Apple Chancery", cursive;
+  line-height: 0.88;
+  letter-spacing: 0;
+}
+
+.bio-name {
+  display: block;
+  font-size: clamp(10px, 3.25cqw, 12.7px);
+  white-space: nowrap;
+}
+
+.bio-detail {
+  display: block;
+  margin-top: 0.5cqw;
+  font-size: clamp(5.8px, 1.85cqw, 7.2px);
+  white-space: nowrap;
+}
+
+.story-flower-top {
+  position: absolute;
+  top: 3.8cqw;
+  z-index: 2;
+  width: 20.2%;
+  height: auto;
+  pointer-events: none;
+}
+
+.story-flower-left {
+  left: 8cqw;
+}
+
+.story-flower-right {
+  right: 8cqw;
+}
+
+.story-title {
+  position: absolute;
+  top: 6.6cqw;
+  left: 50%;
+  z-index: 3;
+  width: 38%;
+  margin: 0;
+  transform: translateX(-50%);
+  text-align: center;
+  font-family: "Louisville", "Lora", serif;
+  font-size: clamp(25px, 8.1cqw, 31px);
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.story-title::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 95%;
+  width: 100%;
+  aspect-ratio: 432 / 37;
+  background: url("assets/page-4/swirl.png") center / contain no-repeat;
+  transform: translateX(-50%);
+}
+
+.story-film {
+  position: absolute;
+  top: 28cqw;
+  left: 50%;
+  z-index: 3;
+  width: 79.5%;
+  aspect-ratio: 1024 / 576;
+  padding: 3.8cqw 0;
+  transform: translateX(-50%);
+  background: #31302e;
+  box-shadow: 0 2px 3px rgba(31, 25, 18, 0.18);
+}
+
+.story-film::before,
+.story-film::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  height: 2.5cqw;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 2.7cqw,
+      rgba(255, 248, 231, 0.92) 2.7cqw 4.15cqw,
+      transparent 4.15cqw 6.55cqw
+    );
+  pointer-events: none;
+}
+
+.story-film::before {
+  top: 0.7cqw;
+}
+
+.story-film::after {
+  bottom: 0.7cqw;
+}
+
+.story-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.story-copy {
+  position: absolute;
+  top: 77.5cqw;
+  left: 6.3%;
+  right: 6.3%;
+  z-index: 3;
+  margin: 0;
+  text-align: center;
+  font-family: "Lora", Georgia, serif;
+  font-size: clamp(8.2px, 2.38cqw, 9.3px);
+  line-height: 1.08;
+}
+
+.story-copy p {
+  margin: 0;
+}
+
+.story-copy p + p {
+  margin-top: 2.4cqw;
+}
+
+.story-tldr {
+  display: inline-block;
+  margin-top: 2.6cqw;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+.story-gallery {
+  position: absolute;
+  left: 5.5cqw;
+  right: 5.5cqw;
+  bottom: 5.8cqw;
+  z-index: 3;
+  height: 24cqw;
+}
+
+.memory-card {
+  position: absolute;
+  width: 23%;
+  margin: 0;
+  padding: 1.05cqw 1.05cqw 1.45cqw;
+  background: #f7f3e9;
+  box-shadow: 0 1px 2px rgba(41, 35, 27, 0.2);
+}
+
+.memory-card img:first-child {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1.12;
+  object-fit: cover;
+}
+
+.memory-card figcaption {
+  min-height: 6.5cqw;
+  margin-top: 1.85cqw;
+  color: #11100d;
+  text-align: center;
+  font-family: "Aloja", "SignPainter", "Snell Roundhand", "Apple Chancery", cursive;
+  font-size: clamp(5.4px, 1.72cqw, 6.7px);
+  line-height: 1.86;
+}
+
+.memory-flower {
+  position: absolute;
+  z-index: 2;
+  height: auto;
+  pointer-events: none;
+}
+
+.memory-one {
+  left: 0;
+  bottom: 1cqw;
+  transform: rotate(0deg);
+}
+
+.memory-one img:first-child {
+  object-position: 45% 55%;
+}
+
+.memory-one .memory-flower {
+  top: -4.8cqw;
+  left: -4.5cqw;
+  width: 13.8cqw;
+}
+
+.memory-two {
+  left: 38.4%;
+  bottom: 0;
+  transform: rotate(12deg);
+}
+
+.memory-two img:first-child {
+  aspect-ratio: 1 / 1.08;
+  object-position: 50% 50%;
+}
+
+.memory-two .memory-flower {
+  top: -6.3cqw;
+  right: -6.8cqw;
+  width: 14.7cqw;
+  transform: rotate(-12deg);
+}
+
+.memory-three {
+  right: 0;
+  bottom: 1.1cqw;
+  transform: rotate(-8deg);
+}
+
+.memory-three img:first-child {
+  object-position: 50% 48%;
+}
+
+.memory-three .memory-flower {
+  top: -4cqw;
+  right: -5.5cqw;
+  width: 13.3cqw;
+  transform: rotate(8deg);
+}
+
+.event-leaves {
+  position: absolute;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+}
+
+.event-leaves-top {
+  top: 0;
+}
+
+.event-leaves-bottom {
+  bottom: 0;
+}
+
+.event-title {
+  position: absolute;
+  top: 23.5cqw;
+  left: 50%;
+  z-index: 3;
+  width: 82%;
+  margin: 0;
+  color: #15120f;
+  text-align: center;
+  font-family: "Louisville", "Lora", serif;
+  font-size: clamp(22px, 7.4cqw, 29px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translate(-50%, -10cqw);
+  transition:
+    opacity 850ms ease,
+    transform 1100ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.event-title::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 105%;
+  width: 83%;
+  aspect-ratio: 432 / 37;
+  background: url("assets/page-5/swirl.png") center / contain no-repeat;
+  transform: translateX(-50%);
+}
+
+.event-title.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.event-block {
+  position: absolute;
+  z-index: 3;
+  left: 5.8%;
+  right: 5.8%;
+  opacity: 0;
+  transform: translateY(-12cqw);
+  transition:
+    opacity 850ms ease,
+    transform 1150ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.event-block.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.event-time {
+  top: 42.2cqw;
+  height: 55cqw;
+  transition-delay: 120ms;
+}
+
+.event-location {
+  top: 99.5cqw;
+  height: 54cqw;
+  transition-delay: 220ms;
+}
+
+.event-icon {
+  position: absolute;
+  z-index: 2;
+  height: auto;
+  pointer-events: none;
+}
+
+.event-time-icon {
+  top: 0.2cqw;
+  left: -0.2cqw;
+  width: 7.9cqw;
+}
+
+.event-location-icon {
+  top: 0;
+  left: -0.3cqw;
+  width: 10.4cqw;
+}
+
+.event-label {
+  position: absolute;
+  top: 3.6cqw;
+  left: 10.5cqw;
+  margin: 0;
+  color: #15120f;
+  font-family: "Louisville", "Lora", serif;
+  font-size: clamp(18px, 5.3cqw, 20.5px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.event-schedule {
+  position: absolute;
+  top: 17cqw;
+  left: 0;
+  right: 0;
+  min-height: 29cqw;
+  text-align: center;
+}
+
+.event-slot {
+  position: absolute;
+  top: 0;
+  width: 42%;
+  font-family: "Buffalo", "SignPainter", "Snell Roundhand", "Apple Chancery", cursive;
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+
+.event-slot-left {
+  left: 0;
+}
+
+.event-slot-right {
+  right: 0;
+}
+
+.event-slot-title {
+  display: block;
+  min-height: 9cqw;
+  font-size: clamp(19px, 5.8cqw, 22.5px);
+}
+
+.event-slot-date,
+.event-slot-time {
+  display: block;
+  font-size: clamp(14px, 4.35cqw, 17px);
+  white-space: nowrap;
+}
+
+.event-slot-time {
+  margin-top: 0.6cqw;
+}
+
+.event-middle-flower {
+  position: absolute;
+  top: -2.5cqw;
+  left: 50%;
+  width: 11.5cqw;
+  height: auto;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.event-mid-swirl {
+  position: absolute;
+  top: 47cqw;
+  width: 33%;
+  height: auto;
+  pointer-events: none;
+}
+
+.event-mid-swirl-left {
+  left: 8.5%;
+}
+
+.event-mid-swirl-right {
+  right: 8.5%;
+}
+
+.event-address {
+  position: absolute;
+  top: 15cqw;
+  left: 0;
+  right: 0;
+  margin: 0;
+  font-family: "Buffalo", "SignPainter", "Snell Roundhand", "Apple Chancery", cursive;
+  font-size: clamp(15px, 4.15cqw, 16.5px);
+  line-height: 1.65;
+  letter-spacing: 0;
+}
+
+.event-map {
+  position: absolute;
+  top: 32.5cqw;
+  left: 50%;
+  width: 64%;
+  aspect-ratio: 188 / 105;
+  border: 0;
+  box-shadow: 0 1px 2px rgba(42, 35, 27, 0.18);
+  transform: translateX(-50%);
+}
+
+.gift-corner {
+  position: absolute;
+  z-index: 2;
+  width: 33%;
+  height: auto;
+  pointer-events: none;
+}
+
+.gift-corner-top-left {
+  top: -1.8cqw;
+  left: -2.8cqw;
+}
+
+.gift-corner-top-right {
+  top: -1.8cqw;
+  right: -2.8cqw;
+  transform: scaleX(-1);
+}
+
+.gift-corner-bottom-left {
+  bottom: -2.7cqw;
+  left: -2.6cqw;
+  transform: scaleY(-1);
+}
+
+.gift-corner-bottom-right {
+  right: -2.6cqw;
+  bottom: -2.7cqw;
+  transform: scale(-1);
+}
+
+.gift-reveal {
+  opacity: 0;
+  transform: translateY(-13cqw);
+  transition:
+    opacity 850ms ease,
+    transform 1150ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.gift-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gift-title {
+  position: absolute;
+  left: 50%;
+  z-index: 3;
+  width: 86%;
+  margin: 0;
+  color: #11100d;
+  text-align: center;
+  font-family: "Louisville", "Lora", serif;
+  font-size: clamp(24px, 7.9cqw, 30.8px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.gift-title-main {
+  top: 19cqw;
+  transform: translate(-50%, -13cqw);
+}
+
+.gift-title-main.is-visible {
+  transform: translate(-50%, 0);
+}
+
+.gift-title-wishes {
+  top: 95.4cqw;
+  transform: translate(-50%, -13cqw);
+  transition-delay: 180ms;
+}
+
+.gift-title-wishes.is-visible {
+  transform: translate(-50%, 0);
+}
+
+.gift-flower {
+  position: absolute;
+  left: 50%;
+  z-index: 3;
+  width: 36%;
+  height: auto;
+  pointer-events: none;
+}
+
+.gift-flower-main {
+  top: 29.8cqw;
+  transform: translate(-50%, -13cqw);
+  transition-delay: 70ms;
+}
+
+.gift-flower-main.is-visible {
+  transform: translate(-50%, 0);
+}
+
+.gift-flower-wishes {
+  top: 106.2cqw;
+  transform: translate(-50%, -13cqw);
+  transition-delay: 240ms;
+}
+
+.gift-flower-wishes.is-visible {
+  transform: translate(-50%, 0);
+}
+
+.gift-copy {
+  position: absolute;
+  top: 41.8cqw;
+  left: 7%;
+  right: 7%;
+  z-index: 3;
+  margin: 0;
+  color: #11100d;
+  text-align: center;
+  font-family: "Buffalo", "SignPainter", "Snell Roundhand", "Apple Chancery", cursive;
+  font-size: clamp(17px, 5.25cqw, 20.5px);
+  font-weight: 400;
+  line-height: 1.62;
+  letter-spacing: 0;
+  transition-delay: 120ms;
+}
+
+.gift-placeholder {
+  position: absolute;
+  top: 78.5cqw;
+  left: 2%;
+  right: 2%;
+  z-index: 3;
+  margin: 0;
+  color: #11100d;
+  text-align: center;
+  font-family: "Louisville", "Lora", serif;
+  font-size: clamp(17.5px, 5.35cqw, 21px);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition-delay: 160ms;
+}
+
+.wishes-panel {
+  position: absolute;
+  top: 118.5cqw;
+  left: 8.2%;
+  right: 8.2%;
+  bottom: 4.2cqw;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6cqw;
+  padding: 3.1cqw 4.8cqw;
+  background:
+    linear-gradient(rgba(247, 242, 232, 0.86), rgba(247, 242, 232, 0.86)),
+    url("assets/background.png") center / cover no-repeat;
+  color: #11100d;
+  box-shadow: 0 2px 4px rgba(48, 39, 27, 0.12);
+  transition-delay: 300ms;
+}
+
+.wishes-count {
+  margin: 0;
+  text-align: center;
+  font-family: "Lora", Georgia, serif;
+  font-size: clamp(12px, 3.7cqw, 14.5px);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.wishes-form {
+  display: grid;
+  gap: 1.35cqw;
+  flex: 0 0 auto;
+}
+
+.wish-name,
+.wish-message {
+  width: 100%;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #11100d;
+  font-family: "Lora", Georgia, serif;
+  font-size: clamp(10.5px, 3.35cqw, 13px);
+  line-height: 1.3;
+}
+
+.wish-name {
+  height: 7.3cqw;
+  padding: 0 4cqw;
+}
+
+.wish-message {
+  min-height: 12.8cqw;
+  padding: 2cqw 4cqw;
+  border-radius: 3.9cqw;
+  resize: none;
+}
+
+.wish-name:focus,
+.wish-message:focus {
+  outline: 1.5px solid rgba(17, 16, 13, 0.42);
+  outline-offset: 2px;
+}
+
+.wish-name[readonly] {
+  cursor: default;
+}
+
+.wish-submit {
+  justify-self: start;
+  min-width: 22cqw;
+  min-height: 7.25cqw;
+  padding: 0 5cqw;
+  border: 0;
+  border-radius: 999px;
+  background: #11100d;
+  color: #fffdf6;
+  font-family: "Lora", Georgia, serif;
+  font-size: clamp(11.5px, 3.5cqw, 13.8px);
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.wish-submit:focus-visible {
+  outline: 2px solid #11100d;
+  outline-offset: 3px;
+}
+
+.wishes-list {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 1.6cqw;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(17, 16, 13, 0.45) transparent;
+}
+
+.wishes-empty,
+.wish-item {
+  margin: 0;
+  color: #11100d;
+  font-family: "Lora", Georgia, serif;
+}
+
+.wishes-empty {
+  padding: 2cqw 0;
+  text-align: center;
+  font-size: clamp(10.5px, 3.2cqw, 12.5px);
+  line-height: 1.35;
+}
+
+.wish-item + .wish-item {
+  margin-top: 3.3cqw;
+}
+
+.wish-author {
+  display: block;
+  margin-bottom: 0.8cqw;
+  font-size: clamp(12px, 3.65cqw, 14.3px);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.wish-text {
+  margin: 0;
+  font-size: clamp(10.5px, 3.25cqw, 12.7px);
+  line-height: 1.32;
+  overflow-wrap: anywhere;
+}
+
+.wish-date {
+  display: block;
+  margin-top: 0.9cqw;
+  font-size: clamp(8.5px, 2.65cqw, 10.3px);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.closing-reveal {
+  opacity: 0;
+  transform: translateY(11cqw);
+  transition:
+    opacity 850ms ease,
+    transform 1150ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.closing-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.closing-flower {
+  position: absolute;
+  left: 50%;
+  z-index: 2;
+  width: 43%;
+  height: auto;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.closing-flower-top {
+  top: 1.3cqw;
+}
+
+.closing-flower-bottom {
+  bottom: 0.8cqw;
+}
+
+.countdown {
+  position: absolute;
+  top: 20.8cqw;
+  left: 6%;
+  right: 6%;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.4cqw;
+  text-align: center;
+  transition-delay: 80ms;
+}
+
+.countdown-value,
+.countdown-label {
+  display: block;
+  color: #050504;
+  font-family: "Louisville", "Lora", serif;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.countdown-value {
+  font-size: clamp(27px, 8.4cqw, 32.8px);
+}
+
+.countdown-label {
+  margin-top: 1.1cqw;
+  font-size: clamp(10px, 3.15cqw, 12.3px);
+  white-space: nowrap;
+}
+
+.closing-photo-card {
+  position: absolute;
+  top: 43.8cqw;
+  left: 50%;
+  z-index: 3;
+  width: 60%;
+  padding: 2.5cqw 2.5cqw 5.2cqw;
+  background: #f4f1e9;
+  box-shadow: 0 2px 3px rgba(35, 29, 23, 0.25);
+  transform: translateX(-50%) rotate(7deg);
+  transform-origin: center;
+  transition-delay: 140ms;
+}
+
+.closing-photo-card.closing-reveal {
+  transform: translateX(-50%) translateY(11cqw) rotate(7deg);
+}
+
+.closing-photo-card.is-visible {
+  transform: translateX(-50%) rotate(7deg);
+}
+
+.closing-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+}
+
+.closing-ribbon {
+  position: absolute;
+  top: -12.2cqw;
+  right: -8.7cqw;
+  z-index: 4;
+  width: 54%;
+  height: auto;
+  pointer-events: none;
+  transform: rotate(-4deg);
+}
+
+.closing-caption {
+  margin: 1.7cqw 0 0;
+  color: #050504;
+  text-align: center;
+  font-family: "Aloja", "SignPainter", "Snell Roundhand", "Apple Chancery", cursive;
+  font-size: clamp(16px, 4.8cqw, 18.7px);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.closing-thanks {
+  position: absolute;
+  top: 118.5cqw;
+  left: 6.2%;
+  right: 6.2%;
+  z-index: 3;
+  margin: 0;
+  color: #050504;
+  text-align: center;
+  font-family: "Buffalo", "SignPainter", "Snell Roundhand", "Apple Chancery", cursive;
+  font-size: clamp(14.5px, 4.35cqw, 17px);
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0;
+  transition-delay: 220ms;
+}
+
+.closing-signature {
+  position: absolute;
+  right: 7.5%;
+  bottom: 15.6cqw;
+  z-index: 3;
+  margin: 0;
+  color: #050504;
+  text-align: right;
+  font-family: "Buffalo", "SignPainter", "Snell Roundhand", "Apple Chancery", cursive;
+  font-size: clamp(15px, 4.45cqw, 17.4px);
+  font-weight: 400;
+  line-height: 1.52;
+  letter-spacing: 0;
+  transition-delay: 320ms;
+}
+
+@supports (height: 100svh) {
+  .opening-screen,
+  .page-bio,
+  .page-story,
+  .page-event,
+  .page-gift,
+  .page-closing {
+    min-height: max(100svh, calc(min(100vw, 390px) * 599 / 337));
+  }
+}
+
+@supports (height: 100dvh) {
+  body {
+    min-height: 100dvh;
+  }
+
+  .opening-screen,
+  .page-bio,
+  .page-story,
+  .page-event,
+  .page-gift,
+  .page-closing {
+    min-height: max(100dvh, calc(min(100vw, 390px) * 599 / 337));
+  }
+}
+
+@media (min-width: 700px) {
+  .invitation {
+    box-shadow: 0 0 45px rgba(69, 61, 46, 0.18);
+  }
+}
