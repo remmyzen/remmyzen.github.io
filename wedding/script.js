@@ -10,8 +10,14 @@ const eventSection = document.querySelector(".page-event");
 const eventReveals = document.querySelectorAll(".event-title, .event-block");
 const giftSection = document.querySelector(".page-gift");
 const giftReveals = document.querySelectorAll(".gift-reveal");
+const wishesSection = document.querySelector(".page-wishes");
+const wishesReveals = document.querySelectorAll(".wishes-reveal");
 const closingSection = document.querySelector(".page-closing");
 const closingReveals = document.querySelectorAll(".closing-reveal");
+const rsvpOptions = document.querySelectorAll(".rsvp-option");
+const rsvpStatus = document.querySelector("[data-rsvp-status]");
+const giftDetailToggle = document.querySelector(".gift-detail-toggle");
+const giftBankDetails = document.querySelector(".gift-bank-details");
 const wishNameInput = document.querySelector(".wish-name");
 const wishesForm = document.querySelector(".wishes-form");
 const wishMessageInput = document.querySelector(".wish-message");
@@ -20,6 +26,7 @@ const wishesList = document.querySelector("[data-wishes-list]");
 const weddingMusic = document.querySelector(".wedding-music");
 const musicToggle = document.querySelector(".music-toggle");
 const wishesStorageKey = "remmy-intan-wedding-wishes-v2";
+const rsvpStorageKey = "remmy-intan-wedding-rsvp-v1";
 const countdownTarget = new Date("2026-07-01T02:00:00Z").getTime();
 const countdownElements = {
   days: document.querySelector("[data-countdown-days]"),
@@ -45,6 +52,26 @@ function getStoredWishes() {
 
 function saveStoredWishes(wishes) {
   localStorage.setItem(wishesStorageKey, JSON.stringify(wishes));
+}
+
+function getStoredRsvp() {
+  try {
+    const savedRsvp = JSON.parse(localStorage.getItem(rsvpStorageKey) || "null");
+    return savedRsvp && typeof savedRsvp === "object" ? savedRsvp : null;
+  } catch {
+    return null;
+  }
+}
+
+function saveStoredRsvp(response) {
+  const previousRsvp = getStoredRsvp();
+  localStorage.setItem(rsvpStorageKey, JSON.stringify({
+    name: displayName === "[name]" ? "Guest" : displayName,
+    response,
+    updatedAt: new Date().toISOString(),
+  }));
+
+  return previousRsvp && previousRsvp.response && previousRsvp.response !== response;
 }
 
 function formatWishDate(value) {
@@ -93,6 +120,29 @@ function renderWishes() {
     article.append(author, message, date);
     wishesList.append(article);
   }
+}
+
+function setRsvpSelection(response) {
+  rsvpOptions.forEach((option) => {
+    const isSelected = option.dataset.rsvp === response;
+    option.classList.toggle("is-selected", isSelected);
+    option.setAttribute("aria-pressed", String(isSelected));
+  });
+}
+
+function showRsvpStatus(message) {
+  rsvpStatus.textContent = message;
+  rsvpStatus.classList.add("is-visible");
+}
+
+function syncStoredRsvp() {
+  const savedRsvp = getStoredRsvp();
+  if (!savedRsvp || !savedRsvp.response) {
+    return;
+  }
+
+  setRsvpSelection(savedRsvp.response);
+  showRsvpStatus("Your response has been saved.");
 }
 
 function setCountdownValue(key, value) {
@@ -157,6 +207,7 @@ function syncPageToHash() {
     window.location.hash === "#story" ||
     window.location.hash === "#event" ||
     window.location.hash === "#gift" ||
+    window.location.hash === "#wishes" ||
     window.location.hash === "#closing"
   ) {
     showQuotePage();
@@ -171,6 +222,9 @@ function syncPageToHash() {
     }
     if (window.location.hash === "#gift") {
       requestAnimationFrame(() => giftSection.scrollIntoView());
+    }
+    if (window.location.hash === "#wishes") {
+      requestAnimationFrame(() => wishesSection.scrollIntoView());
     }
     if (window.location.hash === "#closing") {
       requestAnimationFrame(() => closingSection.scrollIntoView());
@@ -197,6 +251,21 @@ musicToggle.addEventListener("click", () => {
   syncMusicButton();
 });
 
+rsvpOptions.forEach((option) => {
+  option.addEventListener("click", () => {
+    const response = option.dataset.rsvp;
+    const wasUpdated = saveStoredRsvp(response);
+    setRsvpSelection(response);
+    showRsvpStatus(wasUpdated ? "Your response has been updated." : "Your response has been saved.");
+  });
+});
+
+giftDetailToggle.addEventListener("click", () => {
+  giftDetailToggle.setAttribute("aria-expanded", "true");
+  giftDetailToggle.hidden = true;
+  giftBankDetails.hidden = false;
+});
+
 wishesForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -219,6 +288,7 @@ wishesForm.addEventListener("submit", (event) => {
 });
 
 syncMusicButton();
+syncStoredRsvp();
 renderWishes();
 updateCountdown();
 setInterval(updateCountdown, 1000);
@@ -270,6 +340,17 @@ const giftObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.28 });
 
 giftObserver.observe(giftSection);
+
+const wishesObserver = new IntersectionObserver((entries) => {
+  for (const entry of entries) {
+    if (entry.isIntersecting) {
+      wishesReveals.forEach((element) => element.classList.add("is-visible"));
+      wishesObserver.disconnect();
+    }
+  }
+}, { threshold: 0.28 });
+
+wishesObserver.observe(wishesSection);
 
 const closingObserver = new IntersectionObserver((entries) => {
   for (const entry of entries) {

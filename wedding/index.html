@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#f4efe3">
     <title>Intan &amp; Remmy Wedding Invitation</title>
-    <link rel="stylesheet" href="styles.css?v=20260529-page7b">
+    <link rel="stylesheet" href="styles.css?v=20260531-flow-b">
   </head>
   <body>
     <main class="invitation" aria-label="Wedding invitation cover">
@@ -202,12 +202,31 @@
         <img class="event-border-bottom" src="assets/page-5/border-bottom.png" alt="">
       </section>
 
-      <section class="page-gift" id="gift" aria-label="Wedding gift and wishes">
+      <section class="page-gift" id="gift" aria-label="RSVP and wedding gift">
         <img class="gift-bg gift-bg-top" src="assets/page-4/background-top.png" alt="">
         <img class="gift-bg gift-bg-middle" src="assets/page-4/background-top.png" alt="">
         <img class="gift-top-border" src="assets/page-6/border.png" alt="">
         <img class="gift-corner gift-corner-top-left" src="assets/page-6/flower-border.png" alt="">
         <img class="gift-corner gift-corner-top-right" src="assets/page-6/flower-border.png" alt="">
+
+        <section class="rsvp-block gift-reveal" aria-label="RSVP">
+          <h2 class="gift-title rsvp-title">RSVP</h2>
+          <img class="gift-flower rsvp-flower" src="assets/page-6/flower-middle.png" alt="">
+          <p class="rsvp-copy">Let us know if you&rsquo;ll be celebrating with us!</p>
+          <div class="rsvp-options" role="group" aria-label="RSVP response">
+            <button class="rsvp-option" type="button" data-rsvp="coming" aria-pressed="false">
+              <img src="assets/page-6/coming.png" alt="Coming!">
+            </button>
+            <button class="rsvp-option" type="button" data-rsvp="maybe" aria-pressed="false">
+              <img src="assets/page-6/maybe.png" alt="Maybe...">
+            </button>
+            <button class="rsvp-option" type="button" data-rsvp="sorry" aria-pressed="false">
+              <img src="assets/page-6/sorry.png" alt="Sorry... :(">
+            </button>
+          </div>
+          <p class="rsvp-status" data-rsvp-status aria-live="polite"></p>
+          <img class="rsvp-below" src="assets/page-6/rsvp-below.png" alt="">
+        </section>
 
         <h2 class="gift-title gift-title-main gift-reveal">Wedding Gift</h2>
         <img class="gift-flower gift-flower-main gift-reveal" src="assets/page-6/flower-middle.png" alt="">
@@ -217,26 +236,60 @@
           <p class="gift-copy">
             Having you celebrate with us is more than enough. But if you insist on gifting us something, our future household would appreciate a cashless contribution here.
           </p>
-          <p class="gift-placeholder">[Click Here Box/Info Rekening]</p>
+          <button class="gift-detail-toggle" type="button" aria-expanded="false">Click Here</button>
+          <p class="gift-bank-details" hidden>
+            <span>Bank Mandiri</span>
+            <span>1370010890016</span>
+            <span>A/N Cut Intan Auliannisa Isma</span>
+          </p>
         </div>
+      </section>
 
-        <h2 class="gift-title gift-title-wishes gift-reveal">Wedding Wishes</h2>
-        <img class="gift-flower gift-flower-wishes gift-reveal" src="assets/page-6/flower-middle.png" alt="">
+      <section class="page-wishes" id="wishes" aria-label="Wedding wishes">
+        <img class="wishes-page-bg wishes-page-bg-top" src="assets/page-4/background-top.png" alt="">
+        <img class="wishes-page-bg wishes-page-bg-middle" src="assets/page-4/background-top.png" alt="">
+        <img class="wishes-top-border" src="assets/page-6/border.png" alt="">
+        <img class="gift-corner wishes-corner-left" src="assets/page-6/flower-border.png" alt="">
+        <img class="gift-corner wishes-corner-right" src="assets/page-6/flower-border.png" alt="">
+        <h2 class="gift-title gift-title-wishes wishes-reveal">Wedding Wishes</h2>
+        <img class="gift-flower gift-flower-wishes wishes-reveal" src="assets/page-6/flower-middle.png" alt="">
 
-        <section class="wishes-panel gift-reveal" aria-label="Wedding wishes form and messages">
+        <section class="wishes-panel wishes-reveal" aria-label="Wedding wishes form and messages">
           <p class="wishes-count" data-wishes-count>0 Wishes</p>
           <form class="wishes-form">
             <label class="sr-only" for="wish-name">Name</label>
             <input class="wish-name" id="wish-name" name="name" type="text" readonly autocomplete="name">
             <label class="sr-only" for="wish-message">Message</label>
-            <textarea class="wish-message" id="wish-message" name="message" placeholder="Message" maxlength="500" required></textarea>
+            <textarea class="wish-message" id="wish-message" name="message" placeholder="Wishes" maxlength="1000" required></textarea>
             <button class="wish-submit" type="submit">Submit</button>
           </form>
           <div class="wishes-list" data-wishes-list aria-live="polite"></div>
         </section>
+
+        <section class="countdown-band wishes-reveal" aria-label="Countdown to the wedding">
+          <div class="countdown">
+            <div class="countdown-unit">
+              <span class="countdown-value" data-countdown-days>00</span>
+              <span class="countdown-label">Days</span>
+            </div>
+            <div class="countdown-unit">
+              <span class="countdown-value" data-countdown-hours>00</span>
+              <span class="countdown-label">Hours</span>
+            </div>
+            <div class="countdown-unit">
+              <span class="countdown-value" data-countdown-minutes>00</span>
+              <span class="countdown-label">Minutes</span>
+            </div>
+            <div class="countdown-unit">
+              <span class="countdown-value" data-countdown-seconds>00</span>
+              <span class="countdown-label">Seconds</span>
+            </div>
+          </div>
+          <p class="countdown-note">...away from the wedding day!</p>
+        </section>
       </section>
 
-      <section class="page-closing" id="closing" aria-label="Closing countdown and thanks">
+      <section class="page-closing" id="closing" aria-label="Closing thanks">
         <img class="closing-bg closing-bg-middle" src="assets/page-4/background-top.png" alt="">
         <img class="closing-bg closing-bg-bottom" src="assets/page-4/background-top.png" alt="">
         <img class="closing-border closing-border-top" src="assets/page-7/top-border.png" alt="">
@@ -245,25 +298,6 @@
         <img class="closing-side-flower closing-side-flower-left" src="assets/page-7/flower-left.png" alt="">
         <img class="closing-side-flower closing-side-flower-right" src="assets/page-7/flower-right.png" alt="">
 
-        <div class="countdown closing-reveal" aria-label="Countdown to the wedding">
-          <div class="countdown-unit">
-            <span class="countdown-value" data-countdown-days>00</span>
-            <span class="countdown-label">Days</span>
-          </div>
-          <div class="countdown-unit">
-            <span class="countdown-value" data-countdown-hours>00</span>
-            <span class="countdown-label">Hours</span>
-          </div>
-          <div class="countdown-unit">
-            <span class="countdown-value" data-countdown-minutes>00</span>
-            <span class="countdown-label">Minutes</span>
-          </div>
-          <div class="countdown-unit">
-            <span class="countdown-value" data-countdown-seconds>00</span>
-            <span class="countdown-label">Seconds</span>
-          </div>
-        </div>
-
         <figure class="closing-photo-card closing-reveal">
           <img class="closing-ribbon" src="assets/page-7/photo-ribbon.png" alt="">
           <img class="closing-photo" src="assets/page-7/lastpage.jpeg" alt="Intan and Remmy having a picnic">
@@ -271,7 +305,7 @@
         </figure>
 
         <p class="closing-thanks closing-reveal">
-          To everyone celebrating with us in person, thank you. And to those who can&rsquo;t make it, thank you for keeping us in your thoughts.
+          Finally, to everyone celebrating with us in person, thank you. And to those who can&rsquo;t make it, thank you for keeping us in your thoughts and for being part of our story.
         </p>
 
         <p class="closing-signature closing-reveal">

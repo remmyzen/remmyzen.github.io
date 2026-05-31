@@ -42,6 +42,10 @@
   box-sizing: border-box;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -106,6 +110,7 @@ body {
 .page-story,
 .page-event,
 .page-gift,
+.page-wishes,
 .page-closing {
   position: relative;
   overflow: hidden;
@@ -119,6 +124,7 @@ body {
 .page-story,
 .page-event,
 .page-gift,
+.page-wishes,
 .page-closing {
   min-height: calc(min(100vw, 390px) * 599 / 337);
 }
@@ -555,6 +561,7 @@ body {
 .page-story,
 .page-event,
 .page-gift,
+.page-wishes,
 .page-closing {
   display: none;
 }
@@ -563,6 +570,7 @@ body {
 .invitation.show-quote .page-story,
 .invitation.show-quote .page-event,
 .invitation.show-quote .page-gift,
+.invitation.show-quote .page-wishes,
 .invitation.show-quote .page-closing {
   display: block;
 }
@@ -1544,7 +1552,7 @@ body {
 
 .wishes-panel {
   position: absolute;
-  top: 118.5cqw;
+  top: 100.5cqw;
   left: 1.2%;
   right: 1.2%;
   bottom: 4.2cqw;
@@ -1553,11 +1561,11 @@ body {
   flex-direction: column;
   gap: 1.6cqw;
   padding: 3.1cqw 4.8cqw;
-  background:
+  /* background:
     linear-gradient(rgba(247, 242, 232, 0.86), rgba(247, 242, 232, 0.86)),
-    url("assets/background.png") center / cover no-repeat;
+    url("assets/background.png") center / cover no-repeat; */
   color: #11100d;
-  box-shadow: 0 2px 4px rgba(48, 39, 27, 0.12);
+  /* box-shadow: 0 2px 4px rgba(48, 39, 27, 0.12); */
   transition-delay: 300ms;
 }
 
@@ -1617,7 +1625,7 @@ body {
   padding: 0 5cqw;
   border: 0;
   border-radius: 999px;
-  background: #11100d;
+  background: #004aac;
   color: #fffdf6;
   font-family: "Lora", Georgia, serif;
   font-size: clamp(11.5px, 3.5cqw, 13.8px);
@@ -1746,7 +1754,7 @@ body {
 
 .gift-box {
   position: absolute;
-  top: 48.4cqw;
+  top: 35.4cqw;
   left: 4.6%;
   right: 4.6%;
   z-index: 3;
@@ -2002,7 +2010,7 @@ body {
 
 .closing-ribbon {
   position: absolute;
-  top: -1.8cqw;
+  top: -6.8cqw;
   right: -8.1cqw;
   z-index: 4;
   width: 47%;
@@ -2033,7 +2041,7 @@ body {
   color: #050504;
   text-align: center;
   font-family: "Buffalo", "SignPainter", "Snell Roundhand", "Apple Chancery", cursive;
-  font-size: clamp(20px, 4.5cqw, 17.6px);
+  font-size: clamp(24px, 4.5cqw, 20.6px);
   font-weight: 400;
   line-height: 1.6;
   letter-spacing: 0;
@@ -2050,11 +2058,408 @@ body {
   color: #050504;
   text-align: right;
   font-family: "Buffalo", "SignPainter", "Snell Roundhand", "Apple Chancery", cursive;
-  font-size: clamp(20px, 4.05cqw, 15.8px);
+  font-size: clamp(20px, 4.05cqw, 20.6px);
   font-weight: 400;
   line-height: 1.52;
   letter-spacing: 0;
   transition-delay: 130ms;
+}
+
+.rsvp-block {
+  position: absolute;
+  top: 16.2cqw;
+  left: 0;
+  right: 0;
+  z-index: 4;
+  height: 50cqw;
+  text-align: center;
+}
+
+.rsvp-title {
+  top: 0;
+  transform: translate(-50%, -13cqw);
+}
+
+.rsvp-block.is-visible .rsvp-title {
+  transform: translate(-50%, 0);
+}
+
+.rsvp-flower {
+  top: 10.6cqw;
+  transform: translate(-50%, -13cqw);
+}
+
+.rsvp-block.is-visible .rsvp-flower {
+  transform: translate(-50%, 0);
+}
+
+.rsvp-copy {
+  position: absolute;
+  top: 21cqw;
+  left: 7%;
+  right: 7%;
+  z-index: 3;
+  margin: 0;
+  color: #11100d;
+  font-family: "Buffalo", "SignPainter", "Snell Roundhand", "Apple Chancery", cursive;
+  font-size: clamp(16px, 4.65cqw, 18.2px);
+  line-height: 1.25;
+}
+
+.rsvp-options {
+  position: absolute;
+  top: 30.5cqw;
+  left: 22%;
+  right: 22%;
+  z-index: 4;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.7cqw;
+}
+
+.rsvp-option {
+  display: block;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.rsvp-option img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition:
+    filter 180ms ease,
+    transform 180ms ease;
+}
+
+.rsvp-option[aria-pressed="true"] img {
+  filter: drop-shadow(0 0 0.45cqw rgba(13, 94, 196, 0.9)) brightness(1.08);
+  transform: translateY(-0.35cqw);
+}
+
+.rsvp-option:focus-visible {
+  outline: 2px solid #0d5ec4;
+  outline-offset: 3px;
+  border-radius: 999px;
+}
+
+.rsvp-status {
+  position: absolute;
+  top: 39.2cqw;
+  left: 7%;
+  right: 7%;
+  z-index: 3;
+  min-height: 5cqw;
+  margin: 0;
+  color: #11100d;
+  visibility: hidden;
+  font-family: "Buffalo", "SignPainter", "Snell Roundhand", "Apple Chancery", cursive;
+  font-size: clamp(14px, 4.15cqw, 16.2px);
+  line-height: 1.25;
+}
+
+.rsvp-status.is-visible {
+  visibility: visible;
+}
+
+.rsvp-below {
+  position: absolute;
+  top: 31.3cqw;
+  left: 50%;
+  z-index: 2;
+  width: 88%;
+  height: auto;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.page-gift .gift-bg-middle {
+  top: 72cqw;
+}
+
+.page-gift .gift-title-main {
+  top: 78.2cqw;
+}
+
+.page-gift .gift-flower-main {
+  top: 89cqw;
+}
+
+.page-gift .gift-box {
+  top: 105.8cqw;
+  height: 52.8cqw;
+}
+
+.page-gift .gift-box .gift-copy {
+  top: 8.4cqw;
+  font-size: clamp(14.5px, 4.15cqw, 16.2px);
+  line-height: 1.55;
+}
+
+.gift-detail-toggle {
+  position: absolute;
+  left: 50%;
+  bottom: 12.8cqw;
+  z-index: 3;
+  display: grid;
+  min-width: 18.4cqw;
+  min-height: 6.2cqw;
+  place-items: center;
+  padding: 0 3.7cqw;
+  border: 0;
+  border-radius: 999px;
+  background: #075cc2;
+  color: #fffef8;
+  font-family: "Lora", Georgia, serif;
+  font-size: clamp(6.6px, 1.95cqw, 7.6px);
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+
+.gift-detail-toggle:focus-visible {
+  outline: 2px solid #0d5ec4;
+  outline-offset: 3px;
+}
+
+.gift-bank-details {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 5.2cqw;
+  z-index: 2;
+  margin: 0;
+  color: #11100d;
+  text-align: center;
+  font-family: "Louisville", "Lora", serif;
+  font-size: clamp(12px, 3.55cqw, 13.8px);
+  line-height: 1.55;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.gift-bank-details span {
+  display: block;
+}
+
+.page-wishes {
+  overflow: hidden;
+}
+
+.wishes-page-bg,
+.wishes-top-border {
+  position: absolute;
+  height: auto;
+  pointer-events: none;
+}
+
+.wishes-page-bg {
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  opacity: 0.72;
+}
+
+.wishes-page-bg-top {
+  top: 0;
+}
+
+.wishes-page-bg-middle {
+  top: 114cqw;
+}
+
+.wishes-top-border {
+  top: 1.7cqw;
+  left: 50%;
+  z-index: 3;
+  width: 64%;
+  aspect-ratio: 432 / 40;
+  transform: translateX(-50%);
+}
+
+.wishes-corner-left {
+  top: -0.4cqw;
+  left: -1.7cqw;
+}
+
+.wishes-corner-right {
+  top: -0.4cqw;
+  right: -1.7cqw;
+  transform: scaleX(-1);
+}
+
+.wishes-reveal {
+  opacity: 0;
+  transform: translateY(-13cqw);
+  transition:
+    opacity 850ms ease,
+    transform 1150ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wishes-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-wishes .gift-title-wishes {
+  top: 24.8cqw;
+  transform: translate(-50%, -13cqw);
+}
+
+.page-wishes .gift-title-wishes.is-visible {
+  transform: translate(-50%, 0);
+}
+
+.page-wishes .gift-flower-wishes {
+  top: 35.7cqw;
+  transform: translate(-50%, -13cqw);
+}
+
+.page-wishes .gift-flower-wishes.is-visible {
+  transform: translate(-50%, 0);
+}
+
+.page-wishes .wishes-panel {
+  top: 48.5cqw;
+  left: 14%;
+  right: 14%;
+  bottom: 36.5cqw;
+  gap: 1.7cqw;
+  padding: 3cqw 3.5cqw;
+  transition-delay: 120ms;
+}
+
+.page-wishes .wishes-count {
+  font-size: clamp(10px, 3cqw, 11.7px);
+}
+
+.page-wishes .wishes-form {
+  gap: 2cqw;
+}
+
+.page-wishes .wish-name,
+.page-wishes .wish-message {
+  border-radius: 0;
+  font-size: clamp(9px, 2.7cqw, 10.5px);
+}
+
+.page-wishes .wish-name {
+  height: 7.1cqw;
+  padding: 0 1.3cqw;
+}
+
+.page-wishes .wish-message {
+  min-height: 13.2cqw;
+  padding: 1.6cqw 1.3cqw;
+  border-radius: 0;
+}
+
+.page-wishes .wish-submit {
+  min-width: 12.2cqw;
+  min-height: 6.2cqw;
+  padding: 0 2.8cqw;
+  font-size: clamp(8px, 2.4cqw, 9.4px);
+}
+
+.page-wishes .wishes-list {
+  padding-right: 0.9cqw;
+}
+
+.page-wishes .wish-item + .wish-item {
+  margin-top: 3cqw;
+}
+
+.page-wishes .wish-author {
+  margin-bottom: 0.8cqw;
+  font-size: clamp(9.5px, 2.9cqw, 11.3px);
+}
+
+.page-wishes .wish-text {
+  font-size: clamp(8.5px, 2.5cqw, 9.8px);
+}
+
+.page-wishes .wish-date {
+  margin-top: 0.8cqw;
+  font-size: clamp(7.5px, 2.2cqw, 8.6px);
+}
+
+.countdown-band {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 4.5cqw;
+  z-index: 3;
+  height: 28.2cqw;
+  background:
+    linear-gradient(rgba(165, 201, 221, 0.72), rgba(165, 201, 221, 0.72)),
+    url("assets/page-4/bg-below.png") center / cover no-repeat;
+  transition-delay: 260ms;  
+
+}
+
+.countdown-band .countdown {
+  top: 3.7cqw;
+  left: 5.8%;
+  right: 5.8%;
+  gap: 1.2cqw;
+  transition-delay: 0ms;
+}
+
+.countdown-band .countdown-value {
+  font-size: clamp(27px, 7.7cqw, 30px);
+}
+
+.countdown-band .countdown-label {
+  margin-top: 1cqw;
+  font-size: clamp(10px, 3cqw, 11.7px);
+}
+
+.countdown-note {
+  position: absolute;
+  right: 6.6%;
+  bottom: 2.2cqw;
+  margin: 0;
+  color: #050504;
+  font-family: "Buffalo", "SignPainter", "Snell Roundhand", "Apple Chancery", cursive;
+  font-size: clamp(20.5px, 3.95cqw, 15.4px);
+  line-height: 1;
+}
+
+.page-closing .closing-bg-middle {
+  top: 43cqw;
+}
+
+.page-closing .closing-bg-bottom {
+  top: 118cqw;
+}
+
+.page-closing .closing-thanks {
+  top: 21cqw;
+  left: 8%;
+  right: 8%;
+  font-size: clamp(16px, 4.75cqw, 18.5px);
+  line-height: 1.62;
+}
+
+.page-closing .closing-signature {
+  top: 56.2cqw;
+}
+
+.page-closing .closing-photo-card {
+  top: 75.2cqw;
+}
+
+.page-closing .closing-side-flower-left {
+  top: 72cqw;
+}
+
+.page-closing .closing-side-flower-right {
+  top: 102cqw;
 }
 
 @media (max-width: 380px) {
